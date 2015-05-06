@@ -1,0 +1,1 @@
+config.logger = ActiveSupport::Logger.new('your_app.log')
