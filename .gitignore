@@ -16,5 +16,8 @@
 !/log/.keep
 /tmp
 
-# Ignore application configuration
+# Ignore application configuration and local secrets
 /config/application.yml
+.env
+.env.*
+!.env.example
