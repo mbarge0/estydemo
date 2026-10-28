@@ -1,0 +1,10 @@
+# Figaro configuration — copy to config/application.yml and fill in values.
+# config/application.yml is gitignored. See README for setup.
+
+SECRET_KEY_BASE: "replace-with-output-of-rake-secret"
+
+DROPBOX_APP_KEY: "your-dropbox-app-key"
+DROPBOX_APP_SECRET: "your-dropbox-app-secret"
+DROPBOX_ACCESS_TOKEN: "your-dropbox-access-token"
+DROPBOX_ACCESS_TOKEN_SECRET: "your-dropbox-access-token-secret"
+DROPBOX_USER_ID: "your-dropbox-user-id"

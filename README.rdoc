@@ -1,28 +1,46 @@
-== README
+== Estydemo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 4.2 demo app with Devise and Paperclip (Dropbox storage in non-development environments).
 
-Things you may want to cover:
+=== Requirements
 
-* Ruby version
+* Ruby 2.2.1 (see +.ruby-version+ if present)
+* Bundler
 
-* System dependencies
+=== Configuration
 
-* Configuration
+Secrets are not stored in the repository. Use the Figaro gem and a local +config/application.yml+ file.
 
-* Database creation
+1. Copy the example file:
 
-* Database initialization
+    cp config/application.yml.example config/application.yml
 
-* How to run the test suite
+2. Set each value in +config/application.yml+. Variable names are also listed in +.env.example+.
 
-* Services (job queues, cache servers, search engines, etc.)
+* +SECRET_KEY_BASE+ — run +bundle exec rake secret+ and paste the result
+* +DROPBOX_APP_KEY+, +DROPBOX_APP_SECRET+, +DROPBOX_ACCESS_TOKEN+, +DROPBOX_ACCESS_TOKEN_SECRET+, +DROPBOX_USER_ID+ — from your Dropbox app console (required for production/staging image uploads via Paperclip)
 
-* Deployment instructions
++config/application.yml+ and +.env+ are gitignored. Do not commit credentials.
 
-* ...
+Dropbox settings for Paperclip are read from +config/dropbox.yml+, which loads the +DROPBOX_*+ variables from the environment at runtime.
 
+=== Database
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+    bundle install
+    rake db:create db:migrate
+
+=== Run the app
+
+    rails server
+
+Development uses local Paperclip storage; other environments use Dropbox when credentials are configured.
+
+=== Tests
+
+Ensure +SECRET_KEY_BASE+ is set (via Figaro +config/application.yml+ or the environment), then:
+
+    rake test
+
+=== Secret scanning
+
+This repository includes a GitHub Actions workflow that runs Gitleaks on pull requests to reduce the risk of committing secrets again.
